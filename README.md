@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails API to read the input xml file and create a `PlacementSeq` protobuf message.
 
-Things you may want to cover:
+* Ruby version is 3.2.2
 
-* Ruby version
+## Usage
 
-* System dependencies
+```plaintext
+POST /api/v1/ad_parameters
+```
 
-* Configuration
+Parameters:
 
-* Database creation
+| Attribute   | Type    | Required |  Description                   |
+| :-----------|:--------|:---------|:-----------------|
+| `file_path` | string  | yes      | Path to xml file |
 
-* Database initialization
+```shell
+curl --request POST \
+  --url "https://example.com/api/v1/ad_parameters" \
+  --data '{
+    "file_path": "path/to/xml/file"
+}'
+```
 
-* How to run the test suite
+Returns the following status codes:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- `200 OK`: successful response.
+- `422 Unprocessable Entity`: the expected parameter is missing.
